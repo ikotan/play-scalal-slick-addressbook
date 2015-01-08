@@ -1,0 +1,18 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Generator
+GET     /                           controllers.Application.index
+GET     /generate/                  controllers.Application.generate
+GET     /addressbook/               controllers.AddressBookSearch.index
+GET     /addressbook/search         controllers.AddressBookSearch.search
+GET     /addressbook/create         controllers.AddressBook.index
+POST    /addressbook/create         controllers.AddressBook.create
+POST    /addressbook/delete         controllers.AddressBook.delete(id : Int)
+GET     /addressbook/edit           controllers.AddressBook.edit(id : Int)
+POST    /addressbook/update         controllers.AddressBook.update(id : Int)
+GET     /addressbook/update         controllers.AddressBook.update(id : Int)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,0 +1,60 @@
+@(form : Form[AddressBookSearchForm])(addresses : List[models.db.common.Tables.AddressesRow])(implicit flash: Flash)
+@import BootstrapHelper._
+@import org.joda.time.DateTime
+@import org.joda.time.Interval
+@import org.joda.time.Period
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#" data-toggle="tab">検索</a></li>
+    <li><a href="/addressbook/create" data-toggle="tab">登録</a></li>
+  </ul>
+
+@show_age(birthday : DateTime) = @{
+  birthday match {
+    case birthday => new Interval(birthday, new DateTime()).toPeriod().getYears().toString()
+  }
+}
+
+@main("住所録検索フォーム") {
+  @helper.messages(form.errors)
+  @helper.form(action = controllers.routes.AddressBookSearch.search, 'id ->"search", 'role -> "form", 'class -> "form-horizontal"){
+    <div class="container">
+      <fieldset>
+        <legend>住所録検索フォーム</legend>
+       <td>@helper.inputText(form("name"), '_help -> "名前を入力してください")</td>
+     	<div align="center"><input type="submit" value="検索" class="btn btn-primary"></div>
+      </fieldset>
+    </div>
+    @if(addresses) {
+        <div class="container">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>名前</th>
+                  <th>名前(カナ)</th>
+                  <th>電話番号</th>
+                  <th>住所</th>
+                  <th>年齢</th>
+                </tr>
+              </thead>
+              <tbody>
+              @for((address) <- addresses) {
+                <tr>
+                  <td><a href="edit?id=@address.id">@address.id</a></td>
+                  <td>@address.name</td>
+                  <td>@address.nameInKana</td>
+                  <td>@address.telephoneNumber</td>
+                  <td>@address.address</td>
+                  <td>@show_age(address.birthday)</td>
+                  <td><button form="search" formaction="@controllers.routes.AddressBook.delete(address.id)" formmethod="POST" name="delete" value="@address.id" class="btn btn-danger" onclick="return confirm('削除を行います。よろしいですか？');">削除</button></td>
+                </tr>
+              }
+              </tbody>
+            </table>
+          </div>
+        </div>
+    }
+  }
+}
