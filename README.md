@@ -30,3 +30,6 @@ mysql> source addressbook.sql;
 # cd play-scalal-slick-addressbook
 # ./activator run
 ```
+
+# 画面にアクセス
+http://【IPアドレス】:【Port番号】/addressbook/
