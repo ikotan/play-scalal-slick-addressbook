@@ -1,10 +1,12 @@
 # 導入方法
+
 住所録サンプルを取得
 ```
 # git clone git@gitlab.adways.net:endo.munetoshi/play-scalal-slick-addressbook.git
 ```
 
 JDKインストール
+
 ```
 # sudo yum install java-1.8.0-openjdk
 # sudo yum install java-1.8.0-openjdk-devel
@@ -12,7 +14,7 @@ JDKインストール
 
 接続先Database確認
 ```
-# vim conf/application.conf 
+# vim conf/application.conf
 
 db.default.driver=com.mysql.jdbc.Driver
 db.default.url="jdbc:mysql://localhost/addressbook?characterEncoding=UTF8"
