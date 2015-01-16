@@ -3,14 +3,25 @@
 ```
 # git clone git@gitlab.adways.net:endo.munetoshi/play-scalal-slick-addressbook.git
 ```
+
 JDKインストール
 ```
 # sudo yum install java-1.8.0-openjdk
 # sudo yum install java-1.8.0-openjdk-devel
 ```
+
+接続先Database確認
+```
+# vim conf/application.conf 
+
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url="jdbc:mysql://localhost/addressbook?characterEncoding=UTF8"
+db.default.user=【ユーザID】
+db.default.password=【接続パスワード】
+```
+
 接続Database、Table作成
 ```
-mysql> CREATE DATABASE `addressbook` DEFAULT CHARACTER SET utf8;
 mysql> source addressbook.sql;
 ```
 
