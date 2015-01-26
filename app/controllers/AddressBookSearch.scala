@@ -7,6 +7,7 @@ import models.db.common._
 import play.api.data._
 import play.api.data.Forms._
 import org.joda.time._
+import util.DataDumper
 
 
 // ケースクラス　検索結果をString型で受け取るフォーム
@@ -46,6 +47,9 @@ object AddressBookSearch extends Controller {
         success = { form =>
             // formのnameを受け取って検索
             val addresses = AddressBooks.find(form.name)
+            
+            DataDumper.dump(addresses)
+            
             Ok(views.html.addressbook.search(addressBookSearchForm.bindFromRequest)(addresses))
         }
     )
