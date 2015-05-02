@@ -3,7 +3,7 @@
 住所録サンプルを取得
 
 ```
-# git clone git@gitlab.adways.net:endo.munetoshi/play-scalal-slick-addressbook.git
+# git clone 
 ```
 
 JDKインストール
